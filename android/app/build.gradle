@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "org.jetbrains.kotlin.android" version "1.8.22"
 }
 
 def localProperties = new Properties()
@@ -30,7 +31,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.nathanatos.Cuppa"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -83,11 +84,11 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
-    implementation 'androidx.window:window:1.0.0'
-    implementation 'androidx.window:window-java:1.0.0'
-    // Patrol
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    implementation 'androidx.window:window:1.2.0' // Latest stable
+    implementation 'androidx.window:window-java:1.2.0' // Latest stable
     androidTestUtil "androidx.test:orchestrator:1.4.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.22"
 }
 
 flutter {

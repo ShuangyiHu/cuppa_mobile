@@ -116,13 +116,12 @@ abstract class Prefs {
 
     // Load tea list
     List<String>? teaListJson = sharedPrefs.getStringList(prefTeaList);
-    if (teaListJson != null) {
-      try {
-        teaList += (teaListJson
-            .map<Tea>((tea) => Tea.fromJson(jsonDecode(tea)))).toList();
-      } catch (e) {
-        // Something went wrong
-      }
+    try {
+      teaList +=
+          (teaListJson?.map<Tea>((tea) => Tea.fromJson(jsonDecode(tea))))!
+              .toList();
+    } catch (e) {
+      // Something went wrong
     }
 
     // Save to shared prefs if any legacy teas were migrated
@@ -179,7 +178,7 @@ abstract class Prefs {
 
   static AppTheme? loadAppTheme() {
     int? appThemeValue = sharedPrefs.getInt(prefAppTheme);
-    if (appThemeValue != null && appThemeValue < AppTheme.values.length) {
+    if (appThemeValue! < AppTheme.values.length) {
       return AppTheme.values[appThemeValue];
     } else {
       return null;
